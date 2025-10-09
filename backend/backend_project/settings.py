@@ -1,14 +1,14 @@
 import firebase_admin
 from firebase_admin import credentials
-import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Caminho completo para a chave de serviço
-FIREBASE_SERVICE_ACCOUNT_PATH = os.path.join(BASE_DIR, 'serviceAccountKey.json')
+FIREBASE_SERVICE_ACCOUNT_PATH = BASE_DIR / 'serviceAccountKey.json' 
 
+# CORREÇÃO CRÍTICA: Adicione o 'if' e corrija a indentação
 if not firebase_admin._apps:
     try:
         cred = credentials.Certificate(FIREBASE_SERVICE_ACCOUNT_PATH) # Colocar a private key aqui
@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-bj&=2r-)=!t(u^&kr#(ieyeink=2y9o304_u^^m6(+$e$(2xhn
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# CORREÇÃO: Adicionando hosts de desenvolvimento para evitar erros
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition
